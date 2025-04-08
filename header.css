@@ -1,0 +1,86 @@
+/* Modern header styles */
+.site-header {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-base);
+}
+
+.site-header.scrolled {
+  padding: 0.75rem 0;
+  box-shadow: var(--shadow-lg);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.5rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-base);
+}
+
+.site-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  margin-right: 0.75rem;
+  font-size: 1.75rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Dark mode toggle button */
+.dark-mode-toggle {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Responsive header */
+@media (max-width: 576px) {
+  .site-logo {
+    font-size: 1.2rem;
+  }
+  
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+  
+  .dark-mode-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}

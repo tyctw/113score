@@ -1,0 +1,319 @@
+/* Advanced UI components */
+
+/* Filter box */
+.filter-box {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-item {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filter-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-accent);
+}
+
+.filter-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-md);
+  border: 2px solid var(--border-color);
+  background-color: var(--card-background);
+  color: var(--text-color);
+  transition: var(--transition-base);
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+/* Stats cards */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, var(--card-background), rgba(67, 97, 238, 0.05));
+  border-radius: var(--border-radius-lg);
+  padding: 2rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px solid transparent;
+}
+
+.stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-md);
+  border-bottom-color: var(--primary-color);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent, rgba(67, 97, 238, 0.05));
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.stat-card:hover::before {
+  transform: translateX(100%);
+}
+
+.stat-icon {
+  font-size: 2.2rem;
+  margin-bottom: 1.2rem;
+  color: var(--primary-color);
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(114, 9, 183, 0.05));
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(67, 97, 238, 0.15);
+  transition: all 0.5s ease;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1) rotate(10deg);
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover .stat-value {
+  transform: scale(1.1);
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+}
+
+.stat-label::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+.stat-card:hover .stat-label::after {
+  width: 50px;
+}
+
+/* Charts */
+.chart-container {
+  background: linear-gradient(135deg, var(--card-background), rgba(67, 97, 238, 0.03));
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 2rem;
+  transition: var(--transition-base);
+  position: relative;
+  overflow: hidden;
+  border-left: 5px solid var(--primary-color);
+}
+
+.chart-container:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.chart-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(67, 97, 238, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0.5;
+  transition: all 0.5s ease;
+}
+
+.chart-container:hover::before {
+  transform: scale(1.5);
+  opacity: 0.8;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.chart-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-accent);
+  position: relative;
+  padding-left: 15px;
+}
+
+.chart-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 25px;
+  background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+  border-radius: 3px;
+}
+
+.chart-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.chart-canvas {
+  width: 100%;
+  height: 350px;
+}
+
+/* Back to top button */
+.back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: var(--transition-base);
+  z-index: 100;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background-color: var(--secondary-color);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Loading and animation effects */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-base);
+}
+
+.dark-mode .loader-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.loader-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Animation effects */
+.slide-in-right {
+  animation: slideInRight 0.5s forwards;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.5s forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
