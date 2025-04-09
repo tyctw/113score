@@ -5,122 +5,163 @@
   <title>113會考序位資料</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+TC:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- New modular CSS files -->
+  <!-- Main CSS file -->
+  <link rel="stylesheet" href="modern-style.css">
+  <!-- Legacy CSS references for compatibility -->
   <link rel="stylesheet" href="layout.css">
-  <link rel="stylesheet" href="header.css">
   <link rel="stylesheet" href="table-styles.css">
   <link rel="stylesheet" href="components.css">
-  <link rel="stylesheet" href="navigation.css">
   <link rel="stylesheet" href="animations.css">
-  <!-- Legacy CSS references for compatibility -->
 </head>
 <body>
-  <!-- Background pattern -->
-  <div class="bg-pattern"></div>
-
-  <!-- Modern header -->
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="#" class="site-logo">
-        <i class="fas fa-chart-line logo-icon"></i>
-        113會考序位資料
-      </a>
-      <div class="header-actions">
-        <button id="darkModeToggle" class="dark-mode-toggle">
-          <i class="fas fa-moon"></i>
-        </button>
+  <!-- Modern header with gradient background -->
+  <header class="main-header">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="logo">
+          <i class="fas fa-chart-line logo-icon"></i>
+          <span class="logo-text">113會考序位資料</span>
+        </a>
+        <div class="header-actions">
+          <button id="darkModeToggle" class="theme-toggle">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
       </div>
     </div>
   </header>
 
+  <!-- Hero section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">113會考序位對照表</h1>
+        <p class="hero-subtitle">查詢您的會考成績對應序位及積分</p>
+      </div>
+    </div>
+    <div class="hero-wave">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" fill="none">
+        <path fill="var(--card-background)" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+      </svg>
+    </div>
+  </section>
+
   <!-- Main content area -->
-  <div class="container" style="padding-top: 2rem; padding-bottom: 2rem;">
-    <!-- Modern filter card -->
-    <div class="card fade-in">
-      <h1 class="text-center mb-4">113會考序位對照</h1>
-      
-      <div class="filter-box">
-        <div class="filter-row">
-          <div class="filter-item">
-            <label class="filter-label" for="subjectFilter">科目：</label>
-            <select id="subjectFilter" class="filter-input">
-              <option value="">全部</option>
-              <option value="0">國文</option>
-              <option value="1">數學</option>
-              <option value="2">英文</option>
-              <option value="3">社會</option>
-              <option value="4">自然</option>
-              <option value="5">作文</option>
-            </select>
+  <main class="main-content">
+    <div class="container">
+      <!-- Filter card -->
+      <div class="card filter-card">
+        <div class="card-header">
+          <h2 class="card-title"><i class="fas fa-filter"></i> 成績篩選</h2>
+        </div>
+        <div class="card-body">
+          <div class="filter-grid">
+            <div class="filter-group">
+              <label for="subjectFilter" class="filter-label">科目</label>
+              <div class="select-wrapper">
+                <select id="subjectFilter" class="form-control">
+                  <option value="">全部</option>
+                  <option value="0">國文</option>
+                  <option value="1">數學</option>
+                  <option value="2">英文</option>
+                  <option value="3">社會</option>
+                  <option value="4">自然</option>
+                  <option value="5">作文</option>
+                </select>
+                <i class="fas fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+            
+            <div class="filter-group">
+              <label for="gradeFilter" class="filter-label">成績</label>
+              <div class="select-wrapper">
+                <select id="gradeFilter" class="form-control">
+                  <option value="">全部</option>
+                  <option value="A++">A++</option>
+                  <option value="A+">A+</option>
+                  <option value="A">A</option>
+                  <option value="B++">B++</option>
+                  <option value="B+">B+</option>
+                  <option value="B">B</option>
+                  <option value="C">C</option>
+                </select>
+                <i class="fas fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+            
+            <div class="filter-group">
+              <label for="searchInput" class="filter-label">關鍵字搜尋</label>
+              <div class="input-wrapper">
+                <input type="text" id="searchInput" class="form-control" placeholder="輸入關鍵字...">
+                <i class="fas fa-search input-icon"></i>
+              </div>
+            </div>
+            
+            <div class="filter-actions">
+              <button id="resetFilters" class="btn btn-primary">
+                <i class="fas fa-sync-alt"></i> 重置篩選
+              </button>
+            </div>
           </div>
-          
-          <div class="filter-item">
-            <label class="filter-label" for="gradeFilter">成績：</label>
-            <select id="gradeFilter" class="filter-input">
-              <option value="">全部</option>
-              <option value="A++">A++</option>
-              <option value="A+">A+</option>
-              <option value="A">A</option>
-              <option value="B++">B++</option>
-              <option value="B+">B+</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-            </select>
+        </div>
+      </div>
+
+      <!-- Stats cards -->
+      <div class="stats-row" id="statsContainer">
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-database"></i>
           </div>
-          
-          <div class="filter-item">
-            <label class="filter-label" for="searchInput">搜尋：</label>
-            <input type="text" id="searchInput" class="filter-input" placeholder="輸入關鍵字...">
+          <div class="stat-info">
+            <h3 class="stat-value" id="totalResults">0</h3>
+            <p class="stat-label">總資料筆數</p>
           </div>
         </div>
         
-        <div class="filter-actions">
-          <button id="resetFilters" class="btn btn-accent">重置篩選</button>
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="topGrades">0</h3>
+            <p class="stat-label">頂標成績數</p>
+          </div>
+        </div>
+        
+        <div class="stat-card">
+          <div class="stat-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="stat-info">
+            <h3 class="stat-value" id="averageScore">0</h3>
+            <p class="stat-label">平均積分</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loader component -->
+      <div id="loading" class="loader-container">
+        <!-- Loader will be dynamically inserted by LoadingAnimator -->
+      </div>
+
+      <!-- Data table card -->
+      <div class="card table-card">
+        <div class="card-header">
+          <h2 class="card-title"><i class="fas fa-table"></i> 成績序位對照表</h2>
+        </div>
+        <div class="card-body" id="tableContainer">
+          <!-- Table will be dynamically inserted -->
         </div>
       </div>
     </div>
+  </main>
 
-    <!-- Loader component -->
-    <div id="loading" class="text-center mt-4 mb-4">
-      <!-- Loader will be dynamically inserted by LoadingAnimator -->
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="copyright"> 2025 113會考序位對照表。版權所有。以上資料為113會考生提供。</p>
     </div>
-
-    <!-- Data table container -->
-    <div class="card slide-in-right">
-      <div id="tableContainer"></div>
-    </div>
-
-    <!-- Stats section with ID for targeting -->
-    <div id="statsContainer" class="stats-container scale-in">
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <div class="stat-value" id="totalResults">0</div>
-        <div class="stat-label">總資料筆數</div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-award"></i>
-        </div>
-        <div class="stat-value" id="topGrades">0</div>
-        <div class="stat-label">頂標成績數</div>
-      </div>
-      
-      <div class="stat-card">
-        <div class="stat-icon">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <div class="stat-value" id="averageScore">0</div>
-        <div class="stat-label">平均積分</div>
-      </div>
-    </div>
-
-    <div class="text-center mt-4 text-secondary">
-      &copy; 2025 113會考序位對照表。<span class="text-muted">版權所有。以上資料為113會考生提供。</span>
-    </div>
-  </div>
+  </footer>
 
   <!-- Back to top button -->
   <button id="backToTop" class="back-to-top">
@@ -129,10 +170,9 @@
 
   <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script src="loading-animations.js"></script>
   <script src="enhanced-data-display.js"></script>
   <script src="simplified-app.js"></script>
-  <script src="sidebar-menu.js"></script>
+  <script src="color-utils.js"></script>
 </body>
 </html>

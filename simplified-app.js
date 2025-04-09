@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   window.addEventListener('scroll', function() {
-    const header = document.querySelector('.site-header');
+    const header = document.querySelector('.main-header');
     if (header && window.scrollY > 50) {
       header.classList.add('scrolled');
     } else if (header) {

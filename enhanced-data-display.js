@@ -74,52 +74,71 @@ class EnhancedDataDisplay {
 
     // Create body
     const tbody = document.createElement('tbody');
-    pageData.forEach(row => {
-      const tr = document.createElement('tr');
-      headers.forEach((header, i) => {
-        const td = document.createElement('td');
-        td.setAttribute('data-label', header);
+    
+    // Show empty state message if no data
+    if (pageData.length === 0) {
+      const emptyRow = document.createElement('tr');
+      const emptyCell = document.createElement('td');
+      emptyCell.colSpan = headers.length;
+      emptyCell.className = 'empty-state';
+      emptyCell.innerHTML = `
+        <div class="empty-state-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <p class="empty-state-message">沒有符合條件的資料</p>
+      `;
+      emptyRow.appendChild(emptyCell);
+      tbody.appendChild(emptyRow);
+    } else {
+      // Render data rows
+      pageData.forEach(row => {
+        const tr = document.createElement('tr');
+        headers.forEach((header, i) => {
+          const td = document.createElement('td');
+          td.setAttribute('data-label', header);
 
-        // Format cell content
-        if (i >= 0 && i <= 4) {
-          const grade = row[i] || '';
-          const gradeSpan = document.createElement('span');
-          
-          if (grade === '' || grade === '未取得') {
-            gradeSpan.className = 'grade-badge grade-none';
-            gradeSpan.textContent = '未取得';
+          // Format cell content
+          if (i >= 0 && i <= 4) {
+            const grade = row[i] || '';
+            const gradeSpan = document.createElement('span');
+            
+            if (grade === '' || grade === '未取得') {
+              gradeSpan.className = 'grade-badge grade-none';
+              gradeSpan.textContent = '未取得';
+            } else {
+              gradeSpan.className = `grade-badge grade-${grade.toLowerCase().replace(/\+/g, '-plus')}`;
+              gradeSpan.textContent = grade;
+            }
+            
+            td.appendChild(gradeSpan);
+          } else if (i === 5) { // Special handling for writing score (作文)
+            const writingScore = row[i] || '';
+            const gradeSpan = document.createElement('span');
+            
+            // Apply different colors based on writing score
+            if (['1', '2', '3'].includes(writingScore)) {
+              gradeSpan.className = 'grade-badge grade-writing-low';
+            } else if (['4', '5', '6'].includes(writingScore)) {
+              gradeSpan.className = 'grade-badge grade-writing-high';
+            } else {
+              gradeSpan.className = 'grade-badge grade-none';
+              gradeSpan.textContent = '未取得';
+            }
+            
+            if (writingScore) {
+              gradeSpan.textContent = writingScore;
+            }
+            
+            td.appendChild(gradeSpan);
           } else {
-            gradeSpan.className = `grade-badge grade-${grade.toLowerCase().replace(/\+/g, '-plus')}`;
-            gradeSpan.textContent = grade;
+            td.textContent = row[i] || '';
           }
-          
-          td.appendChild(gradeSpan);
-        } else if (i === 5) { // Special handling for writing score (作文)
-          const writingScore = row[i] || '';
-          const gradeSpan = document.createElement('span');
-          
-          // Apply different colors based on writing score
-          if (['1', '2', '3'].includes(writingScore)) {
-            gradeSpan.className = 'grade-badge grade-writing-low';
-          } else if (['4', '5', '6'].includes(writingScore)) {
-            gradeSpan.className = 'grade-badge grade-writing-high';
-          } else {
-            gradeSpan.className = 'grade-badge grade-c';
-          }
-          
-          gradeSpan.textContent = writingScore;
-          td.appendChild(gradeSpan);
-        } else {
-          td.textContent = row[i] || '';
 
-          // Remove value change indicators
-          // Previously had up/down arrows here
-        }
-
-        tr.appendChild(td);
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
       });
-      tbody.appendChild(tr);
-    });
+    }
     table.appendChild(tbody);
 
     // Clear container and add table
@@ -131,8 +150,23 @@ class EnhancedDataDisplay {
       this.addPagination();
     }
 
+    // Add table summary if data exists
+    if (this.filteredData.length > 0) {
+      this.addTableSummary();
+    }
+
     // Add animation
-    table.classList.add('slide-in-right');
+    table.classList.add('fade-in');
+  }
+
+  // Add table summary information
+  addTableSummary() {
+    const summary = document.createElement('div');
+    summary.className = 'table-summary';
+    summary.innerHTML = `
+      <div>顯示 ${Math.min(this.filteredData.length, this.rowsPerPage)} 筆，共 ${this.filteredData.length} 筆資料</div>
+    `;
+    this.tableContainer.appendChild(summary);
   }
 
   // Add pagination controls
