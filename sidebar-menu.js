@@ -21,9 +21,11 @@ class SidebarMenu {
         </button>
       </div>
       <div class="nav-links-container">
-        <a href="https://sites.google.com/view/tyctw/" class="nav-link"><i class="fas fa-home"></i> 首頁</a>
-        <a href="https://tyctw.github.io/spare/" class="nav-link"><i class="fas fa-chart-bar"></i> 落點分析</a>
-        <a href="https://tyctw.github.io/Vocational-/" class="nav-link"><i class="fas fa-school"></i> 學校資訊</a>
+        <a href="#" class="nav-link"><i class="fas fa-home"></i> 首頁</a>
+        <a href="#" class="nav-link"><i class="fas fa-chart-bar"></i> 成績統計</a>
+        <a href="#" class="nav-link"><i class="fas fa-school"></i> 學校資訊</a>
+        <a href="#" class="nav-link"><i class="fas fa-book"></i> 升學資源</a>
+        <a href="#" class="nav-link"><i class="fas fa-question-circle"></i> 常見問題</a>
       </div>
       <div class="nav-footer">
         &copy; 2025 113會考序位資料

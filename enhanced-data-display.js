@@ -112,15 +112,7 @@ class EnhancedDataDisplay {
         } else {
           td.textContent = row[i] || '';
 
-          // Add value change indicators for numeric values
-          if (i >= 8 && !isNaN(row[i])) {
-            const valueChange = document.createElement('span');
-            valueChange.className = 'value-change';
-            const isPositive = Math.random() > 0.5; // Demo: random change direction
-            valueChange.classList.add(isPositive ? 'positive' : 'negative');
-            valueChange.textContent = isPositive ? '↑' : '↓';
-            td.appendChild(valueChange);
-          }
+          // Remove value change indicators - previously had code here that added up/down arrows
         }
 
         tr.appendChild(td);
