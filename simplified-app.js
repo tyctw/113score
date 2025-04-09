@@ -158,9 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
     darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
   }
 
+  // Header animation on scroll
   window.addEventListener('scroll', function() {
     const header = document.querySelector('.main-header');
-    if (header && window.scrollY > 50) {
+    if (header && window.scrollY > 20) {
       header.classList.add('scrolled');
     } else if (header) {
       header.classList.remove('scrolled');

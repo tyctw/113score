@@ -1,0 +1,215 @@
+/* Modern, animated header styles for 113會考序位資料 */
+:root {
+  --header-height: 70px;
+  --header-height-mobile: 60px;
+  --header-shadow: 0 2px 15px rgba(0,0,0,0.15);
+  --header-font: 'Poppins', 'Noto Sans TC', sans-serif;
+  --header-transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  --header-icon-size: 22px;
+  --header-logo-size: 28px;
+  --header-border-radius: 12px;
+  --header-button-hover: rgba(255, 255, 255, 0.25);
+}
+
+/* Main header container */
+.main-header {
+  background: linear-gradient(120deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+  color: white;
+  padding: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--header-shadow);
+  height: var(--header-height);
+  transition: var(--header-transition);
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.main-header.scrolled {
+  height: calc(var(--header-height) - 15px);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 0 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Logo styling */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: white;
+  font-weight: 700;
+  font-family: var(--header-font);
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: var(--header-transition);
+  position: relative;
+  padding: 8px 0;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+.logo:hover::after {
+  width: 100%;
+}
+
+.logo-icon {
+  font-size: var(--header-logo-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: var(--header-transition);
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(15deg);
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.logo-text {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Header actions container */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Menu toggle button */
+.menu-toggle {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: var(--header-icon-size);
+  border-radius: var(--header-border-radius);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--header-transition);
+}
+
+.menu-toggle:hover, .theme-toggle:hover {
+  background-color: var(--header-button-hover);
+  transform: translateY(-2px);
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  font-size: var(--header-icon-size);
+  border-radius: var(--header-border-radius);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--header-transition);
+}
+
+/* Breadcrumb path - optional */
+.header-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.breadcrumb-separator {
+  font-size: 10px;
+}
+
+/* Notification badge - optional */
+.notification-badge {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  border: 2px solid var(--primary-color);
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .main-header {
+    height: var(--header-height-mobile);
+  }
+  
+  .main-header.scrolled {
+    height: calc(var(--header-height-mobile) - 10px);
+  }
+  
+  .logo-text {
+    font-size: 1.1rem;
+  }
+  
+  .logo-icon {
+    width: 36px;
+    height: 36px;
+    font-size: calc(var(--header-logo-size) - 4px);
+  }
+  
+  .header-inner {
+    padding: 0 1rem;
+  }
+  
+  .menu-toggle, .theme-toggle {
+    width: 36px;
+    height: 36px;
+    font-size: calc(var(--header-icon-size) - 2px);
+  }
+}
+
+/* For extra small screens */
+@media (max-width: 380px) {
+  .logo-text {
+    max-width: 180px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

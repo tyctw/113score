@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Main CSS file -->
   <link rel="stylesheet" href="modern-style.css">
+  <!-- New header styles -->
+  <link rel="stylesheet" href="header-styles.css">
   <!-- Legacy CSS references for compatibility -->
   <link rel="stylesheet" href="layout.css">
   <link rel="stylesheet" href="table-styles.css">
@@ -16,19 +18,24 @@
   <link rel="stylesheet" href="sidebar-styles.css">
 </head>
 <body>
-  <!-- Modern header with gradient background -->
+  <!-- Modern header with animated gradient background -->
   <header class="main-header">
-    <div class="container">
-      <div class="header-inner">
-        <a href="#" class="logo">
-          <i class="fas fa-chart-line logo-icon"></i>
-          <span class="logo-text">113會考序位資料</span>
-        </a>
-        <div class="header-actions">
-          <button id="darkModeToggle" class="theme-toggle">
-            <i class="fas fa-moon"></i>
-          </button>
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <i class="fas fa-chart-line"></i>
         </div>
+        <div>
+          <span class="logo-text">113會考序位資料</span>
+        </div>
+      </a>
+      <div class="header-actions">
+        <button id="menuToggle" class="menu-toggle">
+          <i class="fas fa-bars"></i>
+        </button>
+        <button id="darkModeToggle" class="theme-toggle">
+          <i class="fas fa-moon"></i>
+        </button>
       </div>
     </div>
   </header>

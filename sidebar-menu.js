@@ -43,25 +43,17 @@ class SidebarMenu {
   }
   
   setupEventListeners() {
+    // The menu toggle is already in the header, so we don't need to add it again
     // Add menu toggle button to header
     const headerActions = document.querySelector('.header-actions');
     
     if (headerActions) {
-      const menuToggle = document.createElement('button');
-      menuToggle.id = 'menuToggle';
-      menuToggle.classList.add('menu-toggle');
-      menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-      
-      // Insert before dark mode toggle
-      const darkModeToggle = document.getElementById('darkModeToggle');
-      if (darkModeToggle) {
-        headerActions.insertBefore(menuToggle, darkModeToggle);
-      } else {
-        headerActions.appendChild(menuToggle);
+      // Set up event listeners for the existing menu toggle in the header
+      const existingMenuToggle = document.getElementById('menuToggle');
+      if (existingMenuToggle) {
+        existingMenuToggle.addEventListener('click', () => this.openMenu());
       }
       
-      // Set up event listeners
-      menuToggle.addEventListener('click', () => this.openMenu());
       document.getElementById('closeMenu').addEventListener('click', () => this.closeMenu());
       document.getElementById('sidebarOverlay').addEventListener('click', () => this.closeMenu());
     }
