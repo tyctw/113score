@@ -48,6 +48,54 @@
     </div>
   </section>
 
+  <!-- Guide modal -->
+  <div class="guide-modal" id="userGuideModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title"><i class="fas fa-book"></i> 使用說明</h2>
+        <button class="modal-close" id="closeGuideModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="guide-section">
+          <h3><i class="fas fa-search"></i> 如何搜尋資料</h3>
+          <p>您可以通過以下方式找到您需要的序位資料：</p>
+          <ul class="guide-list">
+            <li>選擇特定科目（國文、數學、英文等）進行篩選</li>
+            <li>選擇特定成績等級（A++, A+, A等）進行篩選</li>
+            <li>輸入關鍵字進行搜尋（如特定序位、積分範圍等）</li>
+          </ul>
+        </div>
+        <div class="guide-section">
+          <h3><i class="fas fa-chart-bar"></i> 理解成績等級</h3>
+          <div class="grade-guide">
+            <div><span class="grade-badge grade-a-plus-plus">A++</span> <span>頂標 (前7%)</span></div>
+            <div><span class="grade-badge grade-a-plus">A+</span> <span>前標 (前13%)</span></div>
+            <div><span class="grade-badge grade-a">A</span> <span>均標 (前30%)</span></div>
+            <div><span class="grade-badge grade-b-plus-plus">B++</span> <span>後標 (前50%)</span></div>
+            <div><span class="grade-badge grade-b-plus">B+</span> <span>底標 (前75%)</span></div>
+            <div><span class="grade-badge grade-b">B</span> <span>底標以下</span></div>
+            <div><span class="grade-badge grade-c">C</span> <span>需補考</span></div>
+          </div>
+        </div>
+        <div class="guide-section">
+          <h3><i class="fas fa-info-circle"></i> 資料說明</h3>
+          <p>各欄位說明：</p>
+          <ul class="guide-list">
+            <li><strong>國文、數學、英文、社會、自然</strong>：各科會考成績等級</li>
+            <li><strong>作文</strong>：國文寫作測驗級分（1-6級分）</li>
+            <li><strong>比率區間</strong>：學生在全體考生中的百分比區間</li>
+            <li><strong>序位區間</strong>：依據成績換算的序位區間</li>
+            <li><strong>分數</strong>：原始分數</li>
+            <li><strong>積點</strong>：各科成績等第轉換為積點</li>
+            <li><strong>積分</strong>：總積分，可用於落點分析</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Main content area -->
   <main class="main-content">
     <div class="container">
@@ -55,6 +103,9 @@
       <div class="card filter-card">
         <div class="card-header">
           <h2 class="card-title"><i class="fas fa-filter"></i> 成績篩選</h2>
+          <button id="showGuideButton" class="guide-button">
+            <i class="fas fa-book"></i> 使用說明
+          </button>
         </div>
         <div class="card-body">
           <div class="filter-grid">

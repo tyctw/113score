@@ -508,6 +508,206 @@ img {
 .grade-writing-low { background: var(--grade-writing-low); color: #212529; }
 .grade-writing-high { background: var(--grade-writing-high); }
 
+/* User Guide Styles */
+.guide-card {
+  margin-bottom: 2rem;
+  border-left: 4px solid var(--primary-color);
+}
+
+.guide-toggle {
+  background: none;
+  border: none;
+  color: var(--primary-color);
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(67, 97, 238, 0.1);
+  transition: all var(--transition);
+}
+
+.guide-toggle:hover {
+  background-color: rgba(67, 97, 238, 0.2);
+  transform: rotate(180deg);
+}
+
+.guide-toggle.collapsed {
+  transform: rotate(180deg);
+}
+
+.guide-content {
+  display: block;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.guide-content.collapsed {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.guide-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.guide-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.guide-section h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.guide-list {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.guide-list li {
+  margin-bottom: 0.5rem;
+}
+
+.grade-guide {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.grade-guide > div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Modal dialog styles for guide */
+.guide-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.guide-modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius-lg);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--card-background);
+  z-index: 1;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary-color);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.25rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.05);
+  transition: all var(--transition);
+}
+
+.modal-close:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: rotate(90deg);
+  color: var(--primary-color);
+}
+
+.modal-body {
+  padding: 1.5rem;
+  max-height: calc(90vh - 85px);
+  overflow-y: auto;
+}
+
+.guide-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(67, 97, 238, 0.1);
+  color: var(--primary-color);
+  border: none;
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.guide-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+.dark-mode .modal-close {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .modal-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Media queries */
 @media (max-width: 768px) {
   .hero-title {
@@ -545,6 +745,15 @@ img {
   
   .logo-icon {
     font-size: 1.5rem;
+  }
+  
+  .modal-content {
+    max-height: 95vh;
+  }
+  
+  .guide-button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }
 

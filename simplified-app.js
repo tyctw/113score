@@ -195,4 +195,37 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('selectstart', function() {
     return false;
   });
+
+  // User Guide modal functionality
+  const userGuideModal = document.getElementById('userGuideModal');
+  const showGuideButton = document.getElementById('showGuideButton');
+  const closeGuideModal = document.getElementById('closeGuideModal');
+  
+  if (showGuideButton && userGuideModal && closeGuideModal) {
+    showGuideButton.addEventListener('click', function() {
+      userGuideModal.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeGuideModal.addEventListener('click', function() {
+      userGuideModal.classList.remove('show');
+      document.body.style.overflow = '';
+    });
+    
+    // Close when clicking outside the modal content
+    userGuideModal.addEventListener('click', function(e) {
+      if (e.target === userGuideModal) {
+        userGuideModal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+    
+    // Close with ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && userGuideModal.classList.contains('show')) {
+        userGuideModal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    });
+  }
 });
