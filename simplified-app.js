@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Show loading animator
     loadingAnimator.show();
     tableContainer.innerHTML = '';
+    
+    // Create skeleton loaders for preview
+    createSkeletonLoaders();
 
     axios.get(SCRIPT_URL)
       .then(response => {
@@ -48,8 +51,43 @@ document.addEventListener('DOMContentLoaded', function() {
       .catch(error => {
         console.error('Error fetching data:', error);
         loadingAnimator.hide();
-        tableContainer.innerHTML = '<p>載入資料時發生錯誤。請重新整理頁面再試。</p>';
+        tableContainer.innerHTML = '<div class="error-message"><i class="fas fa-exclamation-triangle"></i> 載入資料時發生錯誤。請重新整理頁面再試。</div>';
       });
+  }
+
+  function createSkeletonLoaders() {
+    if (!tableContainer) return;
+    
+    const skeletonTable = document.createElement('table');
+    skeletonTable.className = 'data-table';
+    
+    // Create header
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    for (let i = 0; i < 11; i++) {
+      const th = document.createElement('th');
+      th.classList.add('skeleton-loader');
+      th.style.height = '30px';
+      headerRow.appendChild(th);
+    }
+    thead.appendChild(headerRow);
+    skeletonTable.appendChild(thead);
+    
+    // Create rows
+    const tbody = document.createElement('tbody');
+    for (let i = 0; i < 5; i++) {
+      const tr = document.createElement('tr');
+      for (let j = 0; j < 11; j++) {
+        const td = document.createElement('td');
+        td.classList.add('skeleton-loader');
+        td.style.height = '25px';
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
+    skeletonTable.appendChild(tbody);
+    
+    tableContainer.appendChild(skeletonTable);
   }
 
   function updateStats(data) {

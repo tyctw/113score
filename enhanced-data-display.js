@@ -112,7 +112,8 @@ class EnhancedDataDisplay {
         } else {
           td.textContent = row[i] || '';
 
-          // Remove value change indicators - previously had code here that added up/down arrows
+          // Remove value change indicators
+          // Previously had up/down arrows here
         }
 
         tr.appendChild(td);
@@ -205,19 +206,50 @@ class EnhancedDataDisplay {
     let avgScore = 0;
     if (data.length > 0) {
       const scores = data.map(row => parseFloat(row[10] || 0));
-      avgScore = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      avgScore = scores.reduce((sum, score) => sum + (isNaN(score) ? 0 : score), 0) / 
+                 scores.filter(score => !isNaN(score)).length;
     }
 
-    // Update stats display
-    document.getElementById('totalResults').textContent = totalRecords;
-    document.getElementById('topGrades').textContent = topGrades;
-    document.getElementById('averageScore').textContent = avgScore.toFixed(2);
+    // Update stats display with animation
+    const totalElement = document.getElementById('totalResults');
+    const topGradesElement = document.getElementById('topGrades');
+    const avgScoreElement = document.getElementById('averageScore');
+    
+    if (totalElement) this.animateCounter(totalElement, 0, totalRecords, 1000);
+    if (topGradesElement) this.animateCounter(topGradesElement, 0, topGrades, 1000);
+    if (avgScoreElement) this.animateCounter(avgScoreElement, 0, avgScore, 1000, 2);
 
     // Animate stats cards
     document.querySelectorAll('.stat-card').forEach(card => {
-      card.classList.add('scale-in');
-      setTimeout(() => card.classList.remove('scale-in'), 1000);
+      card.classList.add('fade-in-up');
+      setTimeout(() => card.classList.remove('fade-in-up'), 1000);
     });
+  }
+
+  // Animate number counters
+  animateCounter(element, start, end, duration = 1000, decimals = 0) {
+    const startTime = performance.now();
+    const updateCounter = (currentTime) => {
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easedProgress = this.easeOutQuad(progress);
+      const currentValue = start + (end - start) * easedProgress;
+      
+      element.textContent = decimals > 0 ? 
+        currentValue.toFixed(decimals) : 
+        Math.floor(currentValue).toLocaleString();
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      }
+    };
+    
+    requestAnimationFrame(updateCounter);
+  }
+
+  // Easing function for smoother animation
+  easeOutQuad(t) {
+    return t * (2 - t);
   }
 
   // Handle window resize for responsive adjustments
