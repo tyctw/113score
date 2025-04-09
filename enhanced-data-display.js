@@ -40,12 +40,112 @@ class EnhancedDataDisplay {
         if (!row.some(cell => cell.toString().toLowerCase().includes(searchLower))) return false;
       }
 
+      // Min score filter (column 10 - 積分)
+      if (filters.minScore && !isNaN(filters.minScore)) {
+        const score = parseFloat(row[10] || 0);
+        if (score < filters.minScore) return false;
+      }
+
+      // Max score filter (column 10 - 積分)
+      if (filters.maxScore && !isNaN(filters.maxScore)) {
+        const score = parseFloat(row[10] || 0);
+        if (score > filters.maxScore) return false;
+      }
+
       return true;
     });
 
     this.currentPage = 1;
     this.renderTable();
     this.renderStats();
+    this.updateFilterTags(filters);
+  }
+
+  // New method to update filter tags
+  updateFilterTags(filters) {
+    const filterTags = document.getElementById('filterTags');
+    if (!filterTags) return;
+    
+    filterTags.innerHTML = '';
+    
+    // Create a tag for each active filter
+    if (filters.subject && filters.grade) {
+      const subjectNames = ['國文', '數學', '英文', '社會', '自然', '作文'];
+      const subjectIndex = parseInt(filters.subject);
+      this.addFilterTag(filterTags, `${subjectNames[subjectIndex]}: ${filters.grade}`, 'subject-grade');
+    } else if (filters.grade) {
+      this.addFilterTag(filterTags, `成績: ${filters.grade}`, 'grade');
+    }
+    
+    if (filters.search) {
+      this.addFilterTag(filterTags, `搜尋: ${filters.search}`, 'search');
+    }
+    
+    if (filters.minScore && !isNaN(filters.minScore)) {
+      this.addFilterTag(filterTags, `最低積分: ${filters.minScore}`, 'min-score');
+    }
+    
+    if (filters.maxScore && !isNaN(filters.maxScore)) {
+      this.addFilterTag(filterTags, `最高積分: ${filters.maxScore}`, 'max-score');
+    }
+  }
+  
+  // Helper method to add a filter tag
+  addFilterTag(container, text, filterType) {
+    const tag = document.createElement('div');
+    tag.className = 'filter-tag';
+    tag.innerHTML = `
+      ${text}
+      <span class="filter-tag-remove" data-filter="${filterType}">
+        <i class="fas fa-times"></i>
+      </span>
+    `;
+    
+    // Add click handler to remove tag
+    tag.querySelector('.filter-tag-remove').addEventListener('click', () => {
+      this.removeFilter(filterType);
+    });
+    
+    container.appendChild(tag);
+  }
+  
+  // Remove a specific filter
+  removeFilter(filterType) {
+    const subjectFilter = document.getElementById('subjectFilter');
+    const gradeFilter = document.getElementById('gradeFilter');
+    const searchInput = document.getElementById('searchInput');
+    const minScoreFilter = document.getElementById('minScoreFilter');
+    const maxScoreFilter = document.getElementById('maxScoreFilter');
+    
+    switch(filterType) {
+      case 'subject-grade':
+        subjectFilter.value = '';
+        gradeFilter.value = '';
+        break;
+      case 'grade':
+        gradeFilter.value = '';
+        break;
+      case 'search':
+        searchInput.value = '';
+        break;
+      case 'min-score':
+        minScoreFilter.value = '';
+        break;
+      case 'max-score':
+        maxScoreFilter.value = '';
+        break;
+    }
+    
+    // Re-apply filters
+    const filters = {
+      subject: subjectFilter.value,
+      grade: gradeFilter.value,
+      search: searchInput.value.toLowerCase(),
+      minScore: minScoreFilter.value,
+      maxScore: maxScoreFilter.value
+    };
+    
+    this.applyFilters(filters);
   }
 
   // Render table with pagination

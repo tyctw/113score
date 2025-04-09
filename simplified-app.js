@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const subjectFilter = document.getElementById('subjectFilter');
   const gradeFilter = document.getElementById('gradeFilter');
   const searchInput = document.getElementById('searchInput');
+  const minScoreFilter = document.getElementById('minScoreFilter');
+  const maxScoreFilter = document.getElementById('maxScoreFilter');
   const resetFilters = document.getElementById('resetFilters');
   const backToTopButton = document.getElementById('backToTop');
   const darkModeToggle = document.getElementById('darkModeToggle');
@@ -114,7 +116,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const filters = {
       subject: subjectFilter.value,
       grade: gradeFilter.value,
-      search: searchInput.value.toLowerCase()
+      search: searchInput.value.toLowerCase(),
+      minScore: minScoreFilter.value,
+      maxScore: maxScoreFilter.value
     };
     
     dataDisplay.applyFilters(filters);
@@ -123,11 +127,15 @@ document.addEventListener('DOMContentLoaded', function() {
   searchInput.addEventListener('input', applyFilters);
   subjectFilter.addEventListener('change', applyFilters);
   gradeFilter.addEventListener('change', applyFilters);
+  minScoreFilter.addEventListener('input', applyFilters);
+  maxScoreFilter.addEventListener('input', applyFilters);
 
   resetFilters.addEventListener('click', function() {
     subjectFilter.value = '';
     gradeFilter.value = '';
     searchInput.value = '';
+    minScoreFilter.value = '';
+    maxScoreFilter.value = '';
     dataDisplay.setData(allData);
   });
 

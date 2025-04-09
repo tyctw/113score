@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
 }
 
-.filter-item {
+.filter-group {
   flex: 1;
   min-width: 200px;
 }

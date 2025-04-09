@@ -157,12 +157,30 @@
               </div>
             </div>
             
+            <div class="filter-group">
+              <label for="minScoreFilter" class="filter-label">最低積分</label>
+              <div class="input-wrapper">
+                <input type="number" id="minScoreFilter" class="form-control" min="0" max="50" placeholder="最低積分...">
+                <i class="fas fa-sort-numeric-up input-icon"></i>
+              </div>
+            </div>
+            
+            <div class="filter-group">
+              <label for="maxScoreFilter" class="filter-label">最高積分</label>
+              <div class="input-wrapper">
+                <input type="number" id="maxScoreFilter" class="form-control" min="0" max="50" placeholder="最高積分...">
+                <i class="fas fa-sort-numeric-down input-icon"></i>
+              </div>
+            </div>
+            
             <div class="filter-actions">
               <button id="resetFilters" class="btn btn-primary">
                 <i class="fas fa-sync-alt"></i> 重置篩選
               </button>
             </div>
           </div>
+          
+          <div class="filter-tags" id="filterTags"></div>
         </div>
       </div>
 
